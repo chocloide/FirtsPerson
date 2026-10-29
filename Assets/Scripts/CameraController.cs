@@ -9,9 +9,10 @@ public class CameraController : MonoBehaviour
     Vector2 targetRotation = Vector2.zero;
 
     public PlayerController player;
+    public GameObject Head;
 
     public Vector2 amplitude = new Vector2(0.0015f, 0.0015f);
-    public float frequency = 10.0f;
+    public float frequency = 1.0f;
     private float ToggleSpeed = 1.0f;
 
     private Vector3 start_pos;
@@ -26,6 +27,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void PlayMotion(Vector3 motion){
+
         transform.localPosition += motion;
     }
 
@@ -64,6 +66,7 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(smoothRotation.x, smoothRotation.y, 0);
         player.transform.localRotation = Quaternion.Euler(0, smoothRotation.y, 0);
+        Head.transform.localRotation = Quaternion.Euler(smoothRotation.x, 0, 0);
 
         CheckMotion();
         ResetPosition();
